@@ -1,0 +1,488 @@
+<div id="main">
+
+  <mat-card>
+    
+    <div class="title">
+      Add Expense Detail
+    </div>
+  
+
+
+  <mat-accordion>
+
+    <!-- =====  1 =======  -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="firstcolor">
+          <mat-panel-title class="bold">
+            Details of Outstation Travel
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Type your name and age
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+
+        <!-- <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" [formControl]="emailFormControl"
+                     [errorStateMatcher]="matcher">
+              <mat-hint>Errors appear instantly!</mat-hint>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </form> -->
+    
+      <!--==========           OUTSTATION FORM                     ============= -->      
+          <form [formGroup]="outstationexpense_subform" (ngSubmit)="onSubmit()" [style.fontSize.px]="15">
+          <div class="row">
+          <mat-form-field class="clr-col-auto">
+              <input readonly matInput [matDatepicker]="picker" placeholder="Date" 
+                              formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+        
+        <mat-form-field class="clr-col-auto">
+          <input matInput placeholder="From Location" formControlName="location">
+          <clr-icon shape="map-marker" class="is-solid" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input readonly matInput placeholder="Dep Time" formControlName="deptime">
+            <clr-icon shape="clock" (click)="open(0)" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="To Location" formControlName="tolocation">
+            <clr-icon shape="map-marker" class="is-solid" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input readonly matInput placeholder="Arrival Time" formControlName="arrtime">
+            <clr-icon shape="clock"  (click)="open(1)" matSuffix></clr-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="row">              
+        <mat-form-field class="clr-col-auto">
+          <input matInput placeholder="Travel By" formControlName="travelby">
+          <clr-icon shape="car" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input  matInput placeholder="Company Expense(Rs)" formControlName="compexpense" type="number">
+            <clr-icon shape="rupee" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="Self Expense(Rs)" formControlName="selfexpense" type="number"> 
+            <clr-icon shape="rupee" matSuffix></clr-icon>
+        </mat-form-field>
+
+       
+            <button class="btn btn-sm btn-primary btn-icon" [disabled]="outstationexpense_subform.invalid">
+             <clr-icon shape="plus">
+               </clr-icon>  <span class="add">add</span>
+        </button>
+      </div>
+    </form>
+    <!--================================================================================-->
+
+
+      <!-- ==========          Table for Outstation                          ==========-->
+      <div class="row" *ngIf="outstation.length != 0">
+          <table mat-table [dataSource]="dataSource" matSort class="table-responsive">
+              
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date }} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="deptime">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Dep. Time </th>
+                <td mat-cell *matCellDef="let element"> {{element.deptime}} </td>
+              </ng-container>
+                          
+              <ng-container matColumnDef="tolocation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.tolocation}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="arrtime">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Arr. Time </th>
+                  <td mat-cell *matCellDef="let element"> {{element.arrtime}} </td>
+                </ng-container>
+
+              <ng-container matColumnDef="travelby">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> TravelBy </th>
+                  <td mat-cell *matCellDef="let element"> {{element.travelby}} </td>
+               </ng-container>
+ 
+              <ng-container matColumnDef="compexpense">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Comp. Expense </th>
+                  <td mat-cell *matCellDef="let element"> {{element.compexpense}} </td>
+               </ng-container> 
+
+              <ng-container matColumnDef="selfexpense">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Self Expense </th>
+                  <td mat-cell *matCellDef="let element"> {{element.selfexpense}} </td>
+               </ng-container> 
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+      </div>
+      <!-- ======================================================-->
+      </mat-expansion-panel>
+       <!-- ===== complete 1 complete=======  -->
+
+
+
+        <!-- =====  2 =======  -->
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="firstcolor">
+          <mat-panel-title class="bold">
+            Details of Local Travel
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+       <!--==========           LOCAL TRAVEL FORM                     ============= -->      
+          <form [formGroup]="localstationexpense_subform" (ngSubmit)="onSubmitLocal()" [style.fontSize.px]="15">
+          <div class="row">
+          <mat-form-field class="clr-col-auto">
+              <input readonly matInput [matDatepicker]="pickerlocal" placeholder="Date" 
+                              formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="pickerlocal"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerlocal></mat-datepicker>
+          </mat-form-field>
+        
+        <mat-form-field class="clr-col-auto">
+          <input matInput placeholder="From Location" formControlName="location">
+          <clr-icon shape="map-marker" class="is-solid" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="Start kms" formControlName="startkm" type="number" min="1" (keyup)="totalkm()">
+            <clr-icon shape="dashboard" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="To Location" formControlName="tolocation">
+            <clr-icon shape="map-marker" class="is-solid" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="End kms" formControlName="endkm" type="number" min="1" (keyup)="totalkm()">
+            <clr-icon shape="dashboard" matSuffix></clr-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="row">              
+        <mat-form-field class="clr-col-auto">
+          <input readonly matInput placeholder="Total kms" formControlName="totalkm">
+          <clr-icon shape="dashboard" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input readonly matInput placeholder="Rate(rs)/kms" formControlName="rate">
+            <clr-icon shape="rupee" matSuffix></clr-icon>
+        </mat-form-field>
+
+        <mat-form-field class="clr-col-auto">
+            <input readonly matInput placeholder="Total Rs." formControlName="total"> 
+            <clr-icon shape="rupee" matSuffix></clr-icon>
+        </mat-form-field>
+
+       
+            <button class="btn btn-sm btn-primary btn-icon"  [disabled]="localstationexpense_subform.invalid">
+             <clr-icon shape="plus">
+               </clr-icon>  <span class="add">add</span>
+        </button>
+      </div>
+    </form>
+    <!--================================================================================-->
+
+    
+      <!-- ==========          Table for Local                          ==========-->
+      <div class="row" *ngIf="local.length != 0">
+          <table mat-table [dataSource]="localdataSource" matSort class="table-responsive">
+              
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.date | date }} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="startkm">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Kms </th>
+                <td mat-cell *matCellDef="let element"> {{element.startkm}} </td>
+              </ng-container>
+                          
+              <ng-container matColumnDef="tolocation">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> To Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.tolocation}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="endkm">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> End Kms </th>
+                  <td mat-cell *matCellDef="let element"> {{element.endkm}} </td>
+                </ng-container>
+
+              <ng-container matColumnDef="totalkm">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Kms </th>
+                  <td mat-cell *matCellDef="let element"> {{element.totalkm}} </td>
+               </ng-container>
+ 
+              <ng-container matColumnDef="rate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate/Kms </th>
+                  <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+               </ng-container> 
+
+              <ng-container matColumnDef="total">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Rs. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+               </ng-container> 
+
+              <tr mat-header-row *matHeaderRowDef="localColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: localColumns;"></tr>
+            </table>
+      </div>
+      <!-- ======================================================-->
+      </mat-expansion-panel>
+       <!-- =====  2 =======  -->
+
+     
+
+      <!-- =====  3 =======  -->
+      <mat-expansion-panel>
+          <mat-expansion-panel-header class="firstcolor">
+            <mat-panel-title class="bold">
+              Details of Hotel Stay
+            </mat-panel-title>
+            <!-- <mat-panel-description>
+              Type your name and age
+            </mat-panel-description> -->
+          </mat-expansion-panel-header>
+      
+           <!--==========           Hotel Stay FORM                     ============= -->      
+           <form [formGroup]="hotelstay_subform" (ngSubmit)="onSubmitHotel()" [style.fontSize.px]="15">
+            <div class="row">
+
+        
+          <mat-form-field class="clr-col-auto">
+            <input matInput placeholder="Location" formControlName="location">
+            <clr-icon shape="map-marker" class="is-solid" matSuffix></clr-icon>
+          </mat-form-field>
+
+          <mat-form-field class="clr-col-auto">
+              <input readonly matInput [matDatepicker]="fromdate" placeholder="From Date"                               formControlName="fromdate"
+               (dateChange)="submitFromDate($event)">
+              <mat-datepicker-toggle matSuffix [for]="fromdate"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #fromdate></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="clr-col-auto">
+              <input readonly matInput [min]="mindate" [matDatepicker]="todate" placeholder="To Date" 
+                              formControlName="todate"
+                              (dateChange)="submitToDate('change', $event)">
+              <mat-datepicker-toggle matSuffix [for]="todate"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #todate></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field class="clr-col-auto">
+              <input matInput placeholder="No.Of Days" formControlName="noofdays" type="number" readonly>
+              <clr-icon shape="hourglass" matSuffix></clr-icon>
+          </mat-form-field>
+  
+          <mat-form-field class="clr-col-auto">
+              <input matInput placeholder="Charge/Days" formControlName="chargeperdays" type="number" min="1" (keyup)="chargeperdays()">
+              <clr-icon shape="rupee" matSuffix></clr-icon>
+          </mat-form-field>
+
+          <mat-form-field class="clr-col-auto">
+              <input readonly matInput placeholder="Total Rs." formControlName="total"> 
+              <clr-icon shape="rupee" matSuffix></clr-icon>
+          </mat-form-field>
+
+          
+              <button class="btn btn-sm btn-primary btn-icon" [disabled]="hotelstay_subform.invalid">
+               <clr-icon shape="plus">
+                 </clr-icon>
+                 <span class="add">add</span>
+          </button>
+        </div>
+  
+     
+      </form>
+      <!--================================================================================-->
+  
+      
+        <!-- ==========          Table for Hotel Stay                          ==========-->
+        <div class="row" *ngIf="hotel.length != 0">
+            <table mat-table [dataSource]="hotelSource" matSort class="table-responsive">
+                
+                
+              
+                <ng-container matColumnDef="location">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                  <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fromdate">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> From Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fromdate | date }} </td>
+                  </ng-container>
+              
+                <ng-container matColumnDef="todate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> To Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.todate}} </td>
+                </ng-container>
+                            
+                <ng-container matColumnDef="noofdays">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> No. Of Days </th>
+                  <td mat-cell *matCellDef="let element"> {{element.noofdays}} </td>
+                </ng-container>
+  
+                <ng-container matColumnDef="chargeperdays">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Charge/Days </th>
+                    <td mat-cell *matCellDef="let element"> {{element.chargeperdays}} </td>
+                  </ng-container>
+  
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Rs. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                 </ng-container> 
+  
+                <tr mat-header-row *matHeaderRowDef="hotelColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: hotelColumns;"></tr>
+              </table>
+        </div>
+        <!-- ======================================================-->
+
+
+        </mat-expansion-panel>
+      <!-- =====  3 =======  -->
+
+    </mat-accordion>
+
+    <mat-accordion class="grandtotal">
+        <mat-expansion-panel>
+
+            <mat-expansion-panel-header class="firstcolor">
+              <mat-panel-title class="bold">
+                Total Expense
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+        
+
+            <form style="padding-left: 15px !important;" class="example-container" [formGroup]="options" [style.fontSize.px]="15">
+             
+             <div class="row">
+
+                <mat-form-field class="col" [color]="primary">
+                  <input matInput type="number" placeholder="Food Expenses with bill as per Eligibility" formControlName="eligibility" min="10">
+                  <mat-error *ngIf="options.get('eligibility')?.invalid">Min size: 10px</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col">
+                    <input matInput type="number" placeholder="Other Items with Bill" formControlName="withbill" min="10">
+                    <mat-error *ngIf="options.get('withbill')?.invalid">Min size: 10px</mat-error>
+                </mat-form-field>
+              </div> 
+
+              <div class="row">
+                <mat-form-field class="col">
+                    <input matInput type="number" placeholder="Miscellaneous Expenses Without Bill" formControlName="withoutbill" min="10">
+                    <mat-error *ngIf="options.get('withoutbill')?.invalid">Min size: 10px</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Grand Total Rs.</mat-label>
+                    <input matInput formControlName="grandtotal">
+                </mat-form-field>
+
+                <button class="btn btn-sm btn-primary btn-icon" [disabled]="hotelstay_subform.invalid">
+                  <clr-icon shape="file">
+                    </clr-icon>
+                    <span class="add">save</span>
+               </button>
+              </div>
+
+              </form>
+
+
+          </mat-expansion-panel>
+    </mat-accordion>
+
+    
+
+    
+
+  <!-- <button mat-raised-button (click)="isEditable = !isEditable">
+    {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
+  </button>
+  
+  <mat-horizontal-stepper linear #stepper>
+
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+
+  </mat-horizontal-stepper> -->
+</mat-card>
+
+<!-- <input id="file-upload" 
+type="file" 
+accept=".txt" 
+(change)="fileUpload($event)">
+<textarea rows="4" cols="50">{{fileText}}</textarea> -->
+
+
+
+
+</div>

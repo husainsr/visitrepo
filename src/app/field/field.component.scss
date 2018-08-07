@@ -1,0 +1,170 @@
+#main{
+    padding: 2rem !important;
+}
+.title{
+    height: 2rem;
+    padding-top: .5rem;
+    text-align: center;
+   
+    color: snow;
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: .7rem  !important;
+    background: #607D8B;
+}
+
+.bold{
+    font-weight: bold;
+    color: #212121;
+}
+.mat-card{
+    padding: 0px !important;
+}
+
+mat-form-field{
+    padding-right: .8rem;
+}
+
+@media screen and (max-width: 500px){
+
+    mat-form-field{
+        width: 90%;
+    }
+  
+}
+
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    
+    .mat-table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        display: table;
+        border-collapse: collapse;
+        margin: 0px;
+    }
+    .mat-row,
+    .mat-header-row {
+        display: table-row;
+    }
+    
+    .mat-cell,
+    .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding-left: .8rem !important;
+        line-break: unset;
+        width: 5%;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+    }
+
+
+   
+
+
+    //-------- Styles to Prevent Clarity/Angular CSS Clashing --------
+    input[type=number]:focus{
+        border-bottom: none !important;
+        background: none;
+        //height: 0px !important;
+    }
+    input[type=number]:not([readonly]){
+        border-bottom: none !important;
+        //background: none;
+        height: auto !important;
+    }
+    input[type=number]{
+        border-bottom: none !important;
+        //background: none;
+        height: auto !important;
+    }
+   //-------------------------------------------------------------------
+   
+
+   .mat-expansion-panel-header.mat-expanded{
+    height: 2rem !important;
+    margin-bottom: .5rem !important;
+   }
+   mat-expansion-panel-header{
+    height: 2rem !important;
+   }
+  
+    //------ Class For GrandTotal Panel---------------------
+     .grandtotal{
+        margin-top: 1px;
+        width: 50%;
+        float: right;
+     }
+     @media screen and (max-width: 500px){
+
+        .grandtotal{
+            width: 100%;
+        }
+
+        //For Lower Expansion Header Height
+        .mat-expansion-panel-header.mat-expanded{
+            height: 2rem !important;
+        }
+        mat-expansion-panel-header{
+            margin-bottom: 2px;
+            height: 2rem !important;
+        }
+      
+    }
+   //---------------------------------------------------------
+
+   .firstcolor:focus{
+    background: #CFD8DC !important;
+
+	// -moz-box-shadow: 0 0 10px   rgb(219, 138, 71);
+	// -webkit-box-shadow: 0 0 10px   rgb(219, 138, 71);
+	// -o-box-shadow: 0 0 10px   rgb(219, 180, 71);
+   }
+   .firstcolor{
+    background: #CFD8DC !important;
+    box-shadow:  0 0 10px  #CFD8DC;
+   }
+
+   form{
+    margin-top: 0px !important; padding-top: 0px !important;
+   }
+
+   input{
+    font-family: Calibri;;
+
+   }
+   mat-form-field{
+    font-family: Calibri;
+   }
+
+
+   //========  Design For the Button =============
+
+   .add{
+       margin-left: 3px;
+   }
+
+   button{margin-left: .5rem !important;}
+   button:disabled{
+       background: rgb(36, 28, 78) !important;
+       color: snow !important;
+   }
+
+   @media screen and (min-width: 700px){
+
+    button:disabled{
+        background: rgb(36, 28, 78) !important;
+        color: snow !important;
+    }
+    button{
+        margin-top: .7rem !important;   
+    }
+   }
+  //==============================================

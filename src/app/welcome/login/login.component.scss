@@ -1,0 +1,39 @@
+
+.card-block{
+    padding: .3rem .3rem;
+}
+.card{
+    margin-top: 0px !important;
+}
+
+.row{
+  margin: 1px !important;
+  padding: 1px !important;
+}
+
+.martop{
+    margin-top: 8px;
+}
+
+.marright{
+    margin-right: 1rem !important;
+}
+
+textarea:focus{
+    box-shadow: none !important;
+}
+
+mat-grid-tile {
+    background: lightblue;
+  }
+// input{
+//     width: 8rem !important;
+// }
+
+// @media screen and (max-width: 500px) {
+//     input {
+//         width: 6rem !important;
+//     }
+//   }
+
+  

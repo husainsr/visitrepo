@@ -1,0 +1,73 @@
+<clr-main-container>
+  <clr-header class="header header-6">
+    <div class="branding">
+      <a>
+        <span class="brand-name">My App</span>
+      </a>
+    </div>
+    <div class="header-actions">
+    </div>
+  </clr-header>
+
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+      
+      
+
+    </div>
+
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true">
+         <clr-vertical-nav-group routerLinkActive="active">
+             <a routerLink="./normal" hidden aria-hidden="true"></a>
+             <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+                            Normal
+           <clr-vertical-nav-group-children *clrIfExpanded="true">
+          <a clrVerticalNavLink
+             routerLink="./normal/pidgey"
+             routerLinkActive="active">
+              Pidgey
+          </a>
+          <a clrVerticalNavLink
+             routerLink="./normal/snorlax"
+             routerLinkActive="active">
+              Snorlax
+          </a>
+      </clr-vertical-nav-group-children>
+  </clr-vertical-nav-group>
+
+  <clr-vertical-nav-group routerLinkActive="active">
+      <a routerLink="./normal" hidden aria-hidden="true"></a>
+      <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+      Employees
+      <clr-vertical-nav-group-children *clrIfExpanded="true">
+          <a clrVerticalNavLink
+             routerLink="./normal/pidgey"
+             routerLinkActive="active">
+              Pidgey
+          </a>
+          <a clrVerticalNavLink
+             routerLink="./normal/snorlax"
+             routerLinkActive="active">
+              Snorlax
+          </a>
+      </clr-vertical-nav-group-children>
+  </clr-vertical-nav-group>
+      <a clrVerticalNavLink routerLink="./profile" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="user"></clr-icon>Employees
+      </a>
+
+      <!-- <div class="nav-divider"></div>
+      <label class="nav-header">Employee reports</label> -->
+
+      <a clrVerticalNavLink routerLink="./orgs" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="building"></clr-icon>New hires
+      </a>
+      
+      <a clrVerticalNavLink routerLink="./orgs" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="building"></clr-icon>Exits
+      </a>
+    </clr-vertical-nav>  
+
+  </div>
+</clr-main-container>

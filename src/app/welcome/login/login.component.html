@@ -1,0 +1,330 @@
+<div class="row">
+ <!--   <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+        <clr-stack-view>
+                  
+            <clr-stack-block #lazyBlock [clrSbExpandable]="true" (clrSbExpandedChange)="fetchChildren()">
+                <clr-stack-label>Label 1</clr-stack-label>
+                <clr-stack-content>Content 1</clr-stack-content>
+        
+                <clr-stack-block>
+                    <div>Loading...</div>
+                </clr-stack-block>
+        
+                <clr-stack-block>
+                    <clr-stack-label>Husain</clr-stack-label>
+                    <clr-stack-content>Rampurawala</clr-stack-content>
+                </clr-stack-block>
+
+            </clr-stack-block>
+        
+            <clr-stack-block [clrSbExpandable]="true">
+                <clr-stack-label>Label 2</clr-stack-label>
+                <clr-stack-content>Content 2</clr-stack-content>
+
+                <clr-stack-block>
+                    <div>Loading...</div>
+                </clr-stack-block>
+            </clr-stack-block>
+        </clr-stack-view>
+     
+   </div> -->
+</div>   
+
+<!-- <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    Header
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                            <form clrForm [formGroup]="userinfo" (ngSubmit)="onSubmit()">
+
+                                    <div class="clr-row">
+                                    <clr-input-container class="clr-col-auto">
+                                      <label>Username</label>
+                                      <label for="username"
+                                              aria-haspopup="true"
+                                              role="tooltip"
+                                              class="tooltip tooltip-validation tooltip-sm"
+                                              [class.invalid]="userinfo.get('username').invalid
+                                                         && (userinfo.get('username').dirty || 
+                                                         userinfo.get('username').touched)">
+                                              
+                                              <input id="username" type="text"
+                                                     formControlName="username">
+                                              <span class="tooltip-content">
+                                                  Name is required.
+                                              </span>
+                                          </label>
+                                    </clr-input-container>
+                                   
+                                    <clr-input-container class="clr-col-auto">
+                                      <label>Email</label>
+                                      <label for="email"
+                                              aria-haspopup="true"
+                                              role="tooltip"
+                                              class="tooltip tooltip-validation tooltip-sm"
+                                              [class.invalid]="userinfo.get('email').invalid
+                                                         && (userinfo.get('email').dirty || 
+                                                         userinfo.get('email').touched)">
+                                              
+                                              <input id="email" type="text"
+                                                     formControlName="email">
+                                              <span class="tooltip-content">
+                                                  Email is required.
+                                              </span>
+                                          </label>
+                                    </clr-input-container>
+                  
+                  
+                                    <div style="margin-top: 1rem;" class="clr-col-auto">
+                                        
+                                                  <label style="display: block;
+                                                  color: #444;
+                                                  font-size: .541667rem;
+                                                  font-weight: 600;
+                                                  line-height: .75rem;" for="selects_1">Traveltype</label>
+                                                  <div class="select">
+                                                      <select id="selects_1">
+                                                          <option>1</option>
+                                                          <option>2</option>
+                                                          <option>3</option>
+                                                          <option>4</option>
+                                                          <option>50000000</option>
+                                                      </select>
+                                                  </div>
+                                              
+                                    </div>
+
+                                    <div style="margin-top: 1rem;" class="clr-col-auto">
+                                        
+                                            <label style="display: block;
+                                            color: #444;
+                                            font-size: .541667rem;
+                                            font-weight: 600;
+                                            line-height: .75rem;" for="selects_2">Traveltype</label>
+                                            <div class="select">
+                                                <select id="selects_2">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>50000000</option>
+                                                </select>
+                                            </div>
+                                        
+                              </div>
+                  
+                                  </div>
+                                    <button class="btn btn-primary martop" type="submit"
+                                    [disabled]="userinfo.invalid">Submit</button>
+                                  </form>
+                                 
+                    </div>
+                   
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-sm btn-link">Footer Action 1</button>
+                    <button class="btn btn-sm btn-link">Footer Action 2</button>
+                </div>
+            </div>
+        </div>
+</div> -->
+
+
+        <!-- <mat-form-field >
+            <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>         
+        <mat-form-field>
+            <textarea class="customTextarea" matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>                        
+      -->
+
+      <mat-card>
+          
+            <mat-form-field appearance="standard" class="marright">
+                <mat-label>Traveltype</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let item of traveltype;" value="{{item.value}}">{{item.viewValue}}</mat-option>
+                    </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" class="marright">
+                    <mat-label>Branch</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let item of branch;" value="{{item.id}}">{{item.name}}</mat-option>
+                        </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" class="marright">
+                    <mat-label>Traveltype</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let item of typeofcall;" value="{{item.value}}">{{item.viewValue}}</mat-option>
+                        </mat-select>
+            </mat-form-field>
+                
+        
+           <!--<mat-card-header>
+               <mat-card-title>Shiba Inu</mat-card-title>
+              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            </mat-card-header> -->
+             <!-- <hr> -->
+            <!-- <mat-card-content>
+              <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+                    <button class="btn btn-primary martop" type="submit"
+                  >Submit</button>
+              <button mat-button>SHARE</button>
+            </mat-card-actions> -->
+          </mat-card>
+          <div id="container" style="height: 50rem !important;"></div>
+  
+          <!-- <mat-grid-list cols="2" rowHeight="4:1">
+
+                <mat-grid-tile>
+                   <mat-form-field >
+                       <input matInput placeholder="Favorite food" value="Sushi">
+                   </mat-form-field>         
+                   <mat-form-field >
+                        <input matInput placeholder="Favorite food" value="Sushi">
+                    </mat-form-field> 
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <textarea  matInput placeholder="Leave a comment"></textarea>
+                    </mat-form-field> 
+                </mat-grid-tile>
+
+                <mat-grid-tile>3</mat-grid-tile>
+                <mat-grid-tile>4</mat-grid-tile>
+         </mat-grid-list> -->
+
+         <!--
+Copyright 2016 Google Inc. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Paul Lewis" />
+  <meta name="viewport" content="width=device-width">
+  <title></title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  
+  <script src="third_party/three.min.js"></script>
+  <script>
+    // Set the scene size.
+    const WIDTH = window.innerWidth;
+    const HEIGHT = window.innerHeight;
+
+    // Set some camera attributes.
+    const VIEW_ANGLE = 45;
+    const ASPECT = WIDTH / HEIGHT;
+    const NEAR = 0.1;
+    const FAR = 10000;
+
+    // Get the DOM element to attach to
+    const container =
+        document.querySelector('#container');
+
+    // Create a WebGL renderer, camera
+    // and a scene
+    const renderer = new THREE.WebGLRenderer();
+    const camera =
+        new THREE.PerspectiveCamera(
+            VIEW_ANGLE,
+            ASPECT,
+            NEAR,
+            FAR
+        );
+
+    const scene = new THREE.Scene();
+
+    // Add the camera to the scene.
+    scene.add(camera);
+
+    // Start the renderer.
+    renderer.setSize(WIDTH, HEIGHT);
+
+    // Attach the renderer-supplied
+    // DOM element.
+    container.appendChild(renderer.domElement);
+
+    // create a point light
+    const pointLight =
+      new THREE.PointLight(0xFFFFFF);
+
+    // set its position
+    pointLight.position.x = 10;
+    pointLight.position.y = 50;
+    pointLight.position.z = 130;
+
+    // add to the scene
+    scene.add(pointLight);
+
+    // create the sphere's material
+    const sphereMaterial =
+      new THREE.MeshLambertMaterial(
+        {
+          color: 0xCC0000
+        });
+
+    // Set up the sphere vars
+    const RADIUS = 50;
+    const SEGMENTS = 16;
+    const RINGS = 16;
+
+    // Create a new mesh with
+    // sphere geometry - we will cover
+    // the sphereMaterial next!
+    const sphere = new THREE.Mesh(
+
+      new THREE.SphereGeometry(
+        RADIUS,
+        SEGMENTS,
+        RINGS),
+
+      sphereMaterial);
+
+    // Move the Sphere back in Z so we
+    // can see it.
+    sphere.position.z = -300;
+
+    // Finally, add the sphere to the scene.
+    scene.add(sphere);
+
+    function update () {
+      // Draw!
+      renderer.render(scene, camera);
+
+      // Schedule the next frame.
+      requestAnimationFrame(update);
+    }
+
+    // Schedule the first frame.
+    requestAnimationFrame(update);
+  </script>
+</body>
+</html>
